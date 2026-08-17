@@ -8,7 +8,7 @@ spring:
       group-id: encoding-service-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring:
           json:
@@ -22,11 +22,10 @@ spring:
                 type: com.netflix.encodingservice.event.VideoUploadedEvent
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server:
-  port:
-    8083
+  port: 8083
 
 aws:
   access-key: ${AWS_ACCESS_KEY}
@@ -41,7 +40,7 @@ ffmpeg:
 
 # Temp directory for the encoding
 encoding:
-  base-path: ${TEMP_DIR:/tmp/endcoding}
+  base-path: ${TEMP_DIR:/tmp/encoding}
 
 management:
   endpoints:

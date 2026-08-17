@@ -1,17 +1,20 @@
-package com.netflix.encodingservice.config;
+package com.netflix.streamingservice.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
-import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
 @Configuration
-public class S3Config {
+public class AppConfig {
+
     @Value("${aws.access-key}")
     private String accessKey;
 
@@ -34,7 +37,7 @@ public class S3Config {
     }
 
     @Bean
-    public S3Presigner s3Presigner() {
+    public S3Presigner s3Presigner(){
         return S3Presigner.builder()
                 .region(Region.of(region))
                 .credentialsProvider(StaticCredentialsProvider.create(
@@ -43,4 +46,14 @@ public class S3Config {
                 .build();
     }
 
+
+    public RedisTemplate<String, String> redisTemplate(
+            RedisConnectionFactory redisConnectionFactory
+    ){
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new  StringRedisSerializer());
+        return redisTemplate;
+    }
 }
