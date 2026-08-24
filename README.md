@@ -337,6 +337,11 @@ The main areas explored through this project are:
 
 ---
 
+## Author
+
+Likhith Raju P
+likhithraju0@gmail.com
+
 ## Disclaimer
 
 Netflix is a trademark of Netflix, Inc.
