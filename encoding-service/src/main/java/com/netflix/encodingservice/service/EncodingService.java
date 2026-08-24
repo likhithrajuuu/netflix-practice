@@ -30,8 +30,8 @@ public class EncodingService {
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
 
-    @Value("${ffmpeg.path")
-    private String ffmepgPath;
+    @Value("${ffmpeg.path}")
+    private String ffmpegPath;
 
     @Value("${encoding.base-path}")
     private String basePath;
@@ -176,7 +176,7 @@ public class EncodingService {
 
         //FFmpeg Command for the HLS encoding
         List<String> command = Arrays.asList(
-                "ffmpeg",
+                ffmepgPath,
                 "-i", inputPath,    //Input File
                 "-vf", "scale=" + width + ":" + height, //Scale to resolution
                 "-c:v", "libx264", // video codec
@@ -224,7 +224,7 @@ public class EncodingService {
             int bitRate = quality[1];
 
 
-            master.append("#EXT-X-STREAM_INF:BANDWIDTH=").append(bitRate*1000).append(", RESOLUTION=").append(width).append("x").append(height).append(", CODECS=\"avc1.42e01e,mp4a.40.2\"\n");
+            master.append("#EXT-X-STREAM-INF:BANDWIDTH=").append(bitRate*1000).append(", RESOLUTION=").append(width).append("x").append(height).append(", CODECS=\"avc1.42e01e,mp4a.40.2\"\n");
             master.append(height).append("p/playlist.m3u8\n\n");
         }
 

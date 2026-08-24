@@ -30,7 +30,7 @@ public class StreamingService {
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
 
-    @Value("${aws.s3.presigned-url-expiry")
+    @Value("${aws.s3.presigned-url-expiry}")
     private long presignedUrlExpiry;
 
     // Redis key for the cache streaming the presigned URLs

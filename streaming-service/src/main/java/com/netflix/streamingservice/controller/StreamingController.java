@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class StreamingController {
     private final StreamingService streamingService;
     private final RedisTemplate<String, String> redisTemplate;
-    private static final String MASTER_PLAYLIST_KEY_PREFIX = "Streaming:playlist";
+    private static final String MASTER_PLAYLIST_KEY_PREFIX = "streaming:playlist:";
 
     /**
      * Get streaming URL for a movie
@@ -23,6 +23,7 @@ public class StreamingController {
      *
      * GET /api/v1/stream/{movieId}
      */
+    @GetMapping("/{movieId}")
     public ResponseEntity<StreamingResponse> getStreamingUrl(
             @PathVariable String movieId
     ){

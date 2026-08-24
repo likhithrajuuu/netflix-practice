@@ -18,7 +18,7 @@ public class AppConfig {
     @Value("${aws.access-key}")
     private String accessKey;
 
-    @Value("${aws.secret-key")
+    @Value("${aws.secret-key}")
     private String secretKey;
 
     @Value("${aws.region}")
@@ -47,6 +47,7 @@ public class AppConfig {
     }
 
 
+    @Bean
     public RedisTemplate<String, String> redisTemplate(
             RedisConnectionFactory redisConnectionFactory
     ){

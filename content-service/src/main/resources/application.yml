@@ -2,9 +2,9 @@ spring:
   application:
     name: content-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/content_db
-    username: likhithrajup
-    password: likhithraju79
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSOWRD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
